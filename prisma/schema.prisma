@@ -1,0 +1,33 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Lado "1" do relacionamento
+model Cliente {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  telefone  String   @unique
+  email     String?
+  criadoEm  DateTime @default(now())
+
+  pedidos   Pedido[] // lista virtual, não gera coluna no banco
+}
+
+// Lado "N" do relacionamento
+model Pedido {
+  id           Int      @id @default(autoincrement())
+  quantidade   Int
+  tipoGola     String
+  tipoManga    String
+  valorTotal   Float
+  status       String   @default("AGUARDANDO_ORCAMENTO")
+  criadoEm     DateTime @default(now())
+
+  clienteId    Int?     // chave estrangeira opcional (RF009: pedido sem cadastro)
+  cliente      Cliente? @relation(fields: [clienteId], references: [id])
+}

@@ -1,0 +1,22 @@
+{
+  "name": "spgu-backend",
+  "version": "1.0.0",
+  "description": "Backend do Sistema de Personalização e Gestão de Uniformes (SPGU) - entidades Cliente e Pedido",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.10",
+    "prisma": "^5.20.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
+  }
+}
